@@ -5,6 +5,7 @@ import Explore from "./pages/Explore/Explore";
 import ManageCategory from "./pages/ManageCategory/ManageCategory";
 import ManageItems from "./pages/ManageItems/ManageItems";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function App() {
   return (
