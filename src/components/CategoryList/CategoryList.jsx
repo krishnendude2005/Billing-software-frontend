@@ -1,15 +1,37 @@
 import { useContext, useState } from "react"
 import { AppContext } from "../../context/appContext"
 import './CategoryList.css'
+import { deleteCategory } from "../../service/CategoryService";
+import toast from "react-hot-toast";
 
 const CategoryList = () => {
-  const { categories } = useContext(AppContext);
+  const { categories, setCategories } = useContext(AppContext);
   const [searchItem, setSearchItem] = useState("");
 
 const filterCategories = categories.filter(category =>
   category.name.toLowerCase().includes(searchItem.toLowerCase())
 );
 
+const deleteByCategoryId = async (categoryId) => {
+  console.log("Delete category with ID:", categoryId);
+  // Implement deletion logic here
+  try {
+    const response = await deleteCategory(categoryId);
+    if(response.status === 204) {
+         const updatedCtaegories = categories.filter(category => category.categoryId !== categoryId)
+         setCategories(updatedCtaegories);
+         // display toast message
+         toast.success("Category deleted successfully");
+    } else {
+      // display error toast message
+      toast.error("Failed to delete category");
+    }
+  } catch (error) {
+    console.log(error);
+    // display error toast message
+    toast.error("Error deleting category");
+  }
+}
 
   return (
     <div className="category-list-container" style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden' }}>
@@ -48,7 +70,10 @@ const filterCategories = categories.filter(category =>
                 </div>
 
                 <div>
-                  <button className="btn btn-danger btn-sm">
+                  {/* Delete Button */}
+                  <button className="btn btn-danger btn-sm"
+                  onClick={() => deleteByCategoryId(category.categoryId)}
+                  >
                     <i className="bi bi-trash"></i>
                   </button>
                 </div>

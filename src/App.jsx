@@ -6,11 +6,13 @@ import ManageCategory from "./pages/ManageCategory/ManageCategory";
 import ManageItems from "./pages/ManageItems/ManageItems";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <div>
       <Menubar />
+      <Toaster/>
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
