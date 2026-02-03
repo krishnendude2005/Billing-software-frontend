@@ -31,11 +31,11 @@ const CategoryForm = () => {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         // handle form submission logic here
-        setLoading(true);
         if (!image) {
             toast.error("Please upload an image for the category");
             return;
         }
+        setLoading(true);
 
         const formData = new FormData();
         formData.append("category", JSON.stringify(data));
@@ -69,10 +69,10 @@ const CategoryForm = () => {
                     <div className="card-body">
                         <form onSubmit={onSubmitHandler}>
                             <div className="mb-3">
-                                
+
                                 <label htmlFor="image" className="form-label">
                                     <img src={image ? URL.createObjectURL(image) : assets.upload} alt="" width={48} />
-                                    
+
                                 </label>
                                 <input
                                     type="file"
@@ -121,10 +121,10 @@ const CategoryForm = () => {
                                     value={data.bgColor}
                                 />
                             </div>
-                            <button 
-                            type="submit"
-                            disabled={loading}
-                             className="btn btn-warning w-100">
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="btn btn-warning w-100">
                                 {loading ? "Adding Category..." : "Add Category"}
                             </button>
                         </form>
