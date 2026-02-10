@@ -7,6 +7,7 @@ import ManageItems from "./pages/ManageItems/ManageItems";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Toaster } from "react-hot-toast";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/category" element={<ManageCategory />} />
         <Route path="/items" element={<ManageItems />} />
         <Route path="/users" element={<ManageUsers />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
