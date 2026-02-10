@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Menubar from "./components/MenuBar/Menubar";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Explore from "./pages/Explore/Explore";
@@ -10,9 +10,11 @@ import { Toaster } from "react-hot-toast";
 import Login from "./pages/Login/Login";
 
 function App() {
+const location = useLocation();
+
   return (
     <div>
-      <Menubar />
+      {location.pathname !== '/login' && <Menubar />}
       <Toaster/>
       <Routes>
         <Route path="/" element={<Dashboard />} />

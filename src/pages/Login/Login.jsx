@@ -1,6 +1,54 @@
+import toast from 'react-hot-toast';
 import './Login.css';
+import { AppContext } from '../../context/appContext';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../service/AuthService';
 
 const Login = () => {
+const {setAuthData} = useContext(AppContext);
+    const navigate = useNavigate();
+
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState({
+        email: '',
+        password: ''
+    });
+
+const onchangeHandler = (e) => {
+    const { name, value } = e.target;
+
+    setData((data) => ({
+        ...data,
+        [name]: value
+    }));
+};
+
+const onSubmitHandler = async(e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+
+        const response = await login(data);
+        if(response.status === 200) {
+            toast.success("Login successful");
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("role", response.data.role);
+            setAuthData(response.data.token, response.data.role);
+            navigate("/dashboard");
+        }
+        
+    } catch (error) {
+        console.log(error);
+        
+        toast.error("Email or password is incorrect");
+    } finally {
+        setLoading(false);
+    }
+}
+
+    
+
     return (
         <div className="bg-light d-flex align-items-center justify-content-center vh-100 login-background">
             <div className="card shadow-lg w-loo" style={{ maxWidth: '480px' }}>
@@ -11,19 +59,19 @@ const Login = () => {
                         Sign in below to access your account
                     </div>
                     <div className="mt-4">
-                        <form>
+                        <form onSubmit={onSubmitHandler}>
                             <div className="mb-4">
                                 <label htmlFor="email" className="form-label text-muted">
                                     Email Address
                                 </label>
-                                <input type="text" name='email' id='email' placeholder='yourname@example.com' className='form-control' />
+                                <input type="text" name='email' id='email' placeholder='yourname@example.com' className='form-control' onChange={onchangeHandler} value={data.email}/>
                             </div>
 
                             <div className="mb-4">
                                 <label htmlFor="password" className="form-label text-muted">
                                     Password
                                 </label>
-                                <input type="password" name='password' id='password' placeholder='*******' className='form-control' />
+                                <input type="password" name='password' id='password' placeholder='*******' className='form-control' onChange={onchangeHandler} value={data.password} />
                             </div>
 
                             <div className="d-grid">
