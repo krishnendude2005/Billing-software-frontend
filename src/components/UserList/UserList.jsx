@@ -1,4 +1,6 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { deleteUser } from "../../service/UserService";
 
 const UserList = ({ users, setUsers }) => {
 
@@ -7,6 +9,18 @@ const UserList = ({ users, setUsers }) => {
   const filteredUsers = users.filter((user) => {
     return user.name.toLowerCase().includes(searchItem.toLowerCase());
   })
+
+const deleteByUserId = async (userId) => {
+    try {
+        await deleteUser(userId);
+        setUsers((prevUsers) => prevUsers.filter((user) => user.userId !== userId));
+        toast.success("User deleted successfully");
+    } catch (error) {
+        console.log(error);
+        toast.error("Unable to delete user");
+    }
+}
+
 
   return (
     <div
@@ -45,7 +59,7 @@ const UserList = ({ users, setUsers }) => {
                   <div>
                     <button
                       className="btn btn-danger btn-sm"
-                      onClick={() => deleteByUserId(user)}
+                      onClick={() => deleteByUserId(user.userId)}
                     >
                       <i className="bi bi-trash"></i>
                     </button>

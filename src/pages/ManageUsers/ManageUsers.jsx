@@ -38,7 +38,7 @@ const ManageUsers = () => {
 
       <div className="right-column">
         {/* list of users */}
-        <UserList users={users} setUsers={setUsers} />
+        <UserList users={users} setUsers={setUsers}/>
       </div>
     </div>
   )

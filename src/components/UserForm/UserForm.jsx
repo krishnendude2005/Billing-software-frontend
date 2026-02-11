@@ -26,14 +26,7 @@ const UserForm = ({ reloadUsers }) => {
         setLoading(true);
         try {
             const response = await addUser(data);
-            // setUsers((prevUsers) => [...prevUsers, response.data]);
             toast.success("User added successfully");
-            // setData({
-            //     name: "",
-            //     email: "",
-            //     password: "",
-            //     role: "ROLE_USER"
-            // })
            reloadUsers();
 
         } catch (error) {
