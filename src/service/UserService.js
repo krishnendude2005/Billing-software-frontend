@@ -6,7 +6,7 @@ export const addUser = async (userData) => {
 }
 
 export const deleteUser = async (userId) => {
-    return await axios.delete(`http://localhost:8080/api/v1.0/admin/users/${userId}`, {headers: {'Authorization': `Bearer ${localStorage.getItem("token")}`}});
+    return await axios.delete(`http://localhost:8080/api/v1.0/admin/user/${userId}`, {headers: {'Authorization': `Bearer ${localStorage.getItem("token")}`}});
 }
 
 export const fetchUsers = async () => {
