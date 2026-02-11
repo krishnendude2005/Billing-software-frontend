@@ -16,10 +16,15 @@ export const AppContextProvider = (props) => {
     // const [customerDetails, setCustomerDetails] = useState({});
     useEffect(() => {
         async function loadData() {
-            const response = await fetchCategories();
+           try {
+             const response = await fetchCategories();
             console.log(response);
             
             setCategories(response.data);
+           } catch (error) {
+            console.log(error);
+            
+           }
         }
         loadData();
     }, []);
