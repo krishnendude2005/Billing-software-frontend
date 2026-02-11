@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { assets } from "../../assets/assets";
 import toast from "react-hot-toast";
 import { addCategory } from "../../service/CategoryService";
-import { AppContext } from "../../context/appContext";
+import { AppContext } from "../../context/AppContext";
 
 const CategoryForm = () => {
     const { categories, setCategories } = useContext(AppContext);
