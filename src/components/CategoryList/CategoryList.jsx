@@ -5,51 +5,51 @@ import { deleteCategory } from "../../service/CategoryService";
 import toast from "react-hot-toast";
 
 const CategoryList = () => {
-  const { categories, setCategories } = useContext(AppContext);
+  const { categories, setCategories, itemsData } = useContext(AppContext);
   const [searchItem, setSearchItem] = useState("");
 
-const filterCategories = categories.filter(category =>
-  category.name.toLowerCase().includes(searchItem.toLowerCase())
-);
+  const filterCategories = categories.filter(category =>
+    category.name.toLowerCase().includes(searchItem.toLowerCase())
+  );
 
-const deleteByCategoryId = async (categoryId) => {
-  console.log("Delete category with ID:", categoryId);
-  // Implement deletion logic here
-  try {
-    const response = await deleteCategory(categoryId);
-    if(response.status === 204) {
-         const updatedCtaegories = categories.filter(category => category.categoryId !== categoryId)
-         setCategories(updatedCtaegories);
-         // display toast message
-         toast.success("Category deleted successfully");
-    } else {
+  const deleteByCategoryId = async (categoryId) => {
+    console.log("Delete category with ID:", categoryId);
+    // Implement deletion logic here
+    try {
+      const response = await deleteCategory(categoryId);
+      if (response.status === 204) {
+        const updatedCtaegories = categories.filter(category => category.categoryId !== categoryId)
+        setCategories(updatedCtaegories);
+        // display toast message
+        toast.success("Category deleted successfully");
+      } else {
+        // display error toast message
+        toast.error("Failed to delete category");
+      }
+    } catch (error) {
+      console.log(error);
       // display error toast message
-      toast.error("Failed to delete category");
+      toast.error("Error deleting category");
     }
-  } catch (error) {
-    console.log(error);
-    // display error toast message
-    toast.error("Error deleting category");
   }
-}
 
   return (
     <div className="category-list-container" style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden' }}>
-      
+
       <div className="row pe-2">
         <div className="input-group mb-3">
-          <input 
-          type="text"
-           name="keyword"
-            id="keyword" 
+          <input
+            type="text"
+            name="keyword"
+            id="keyword"
             placeholder="Search by keyword"
-             className="form-control" 
-             onChange={(e) => setSearchItem(e.target.value)}
-             value={searchItem}
-             />
-             <span className="input-group-text bg-warning">
-              <i className="bi bi-search"></i>
-             </span>
+            className="form-control"
+            onChange={(e) => setSearchItem(e.target.value)}
+            value={searchItem}
+          />
+          <span className="input-group-text bg-warning">
+            <i className="bi bi-search"></i>
+          </span>
         </div>
       </div>
       <div className="row g-3 pe-2">
@@ -66,13 +66,14 @@ const deleteByCategoryId = async (categoryId) => {
 
                 <div className="flex-grow-1">
                   <h5 className="mb-1 text-white">{category.name}</h5>
-                  <p className="mb-0 text-white">{category.items}</p>
-                </div>
+                  <p className="mb-0 text-white">
+                    {itemsData.filter(item => item.categoryId === category.categoryId).length} items
+                  </p>                </div>
 
                 <div>
                   {/* Delete Button */}
                   <button className="btn btn-danger btn-sm"
-                  onClick={() => deleteByCategoryId(category.categoryId)}
+                    onClick={() => deleteByCategoryId(category.categoryId)}
                   >
                     <i className="bi bi-trash"></i>
                   </button>
