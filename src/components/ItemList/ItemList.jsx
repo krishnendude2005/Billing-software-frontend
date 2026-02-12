@@ -16,8 +16,7 @@ const ItemList = () => {
     try {
       const response = await deleteItem(itemId);
       if (response.status == 204) {
-        const updatedItems = itemsData.filter(item => item.itemId !== itemId);
-        setItemsData(updatedItems);
+        setItemsData(prev => prev.filter(item => item.itemId !== itemId));
         toast.success("Item Deleted Successfully")
       } else {
         toast.error("Unable to delete item")
