@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 import assests from "../../assets/Upload_File.png";
 import { AppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
-import { addItem } from "../../service/ItemService";
+import { addItem, fetchItems } from "../../service/ItemService";
 
 const ItemForm = ({ reloadItems }) => {
 
-    const { categories } = useContext(AppContext);
+    const { categories, setItemsData } = useContext(AppContext);
 
     const [loading, setLoading] = useState(false);
     const [image, setImage] = useState(false);
@@ -46,7 +46,9 @@ const ItemForm = ({ reloadItems }) => {
             const response = await addItem(formData);
 
             if (response.status === 201) {
-                await reloadItems();
+
+                const itemResponse = await fetchItems();
+                setItemsData(itemResponse.data);
 
                 toast.success("Item added successfully");
 
@@ -58,6 +60,8 @@ const ItemForm = ({ reloadItems }) => {
                 });
 
                 setImage(false);
+            } else {
+                toast.error("Unable to add item")
             }
 
         } catch (error) {
