@@ -8,7 +8,10 @@ import CartItems from '../../components/CartItems/CartItems';
 import CartSummary from '../../components/CartSummary/CartSummary';
 
 const Explore = () => {
-  const {categories} = useContext(AppContext);
+  const { categories } = useContext(AppContext);
+
+  const [customerName, setCustomerName] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
 
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -16,15 +19,15 @@ const Explore = () => {
     <div className="explore-container text-light">
       <div className="left-column">
         <div className="first-row" style={{ overflowY: 'auto' }}>
-          <DisplayCategory categories={categories} 
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
+          <DisplayCategory categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
           />
         </div>
         <hr className="horizontal-line" />
         <div className="second-row" style={{ overflowY: 'auto' }}>
           <DisplayItems
-          selectedCategory={selectedCategory}
+            selectedCategory={selectedCategory}
           />
         </div>
       </div>
@@ -33,14 +36,21 @@ const Explore = () => {
 
       <div className="right-column d-flex flex-column">
         <div className="customer-form-container" style={{ height: '15%' }}>
-          <CustomerForm/>
+          <CustomerForm
+            customerName={customerName}
+            setCustomerName={setCustomerName}
+
+            mobileNumber={mobileNumber}
+            setMobileNumber={setMobileNumber}
+
+          />
         </div>
         <hr className="my-3 text-light" />
         <div className="cart-items-container" style={{ height: '55%', overflowY: 'auto' }}>
-          <CartItems/>
+          <CartItems />
         </div>
         <div className="cart-summary-container" style={{ height: '30%' }}>
-         <CartSummary/>
+          <CartSummary />
         </div>
       </div>
     </div>
