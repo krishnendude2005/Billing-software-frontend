@@ -81,6 +81,10 @@ export const AppContextProvider = (props) => {
         });
     };
 
+    const clearCart = () => {
+        setCartItems([]);
+    }
+
     const contextValue = {
         categories,
         setCategories,
@@ -91,7 +95,8 @@ export const AppContextProvider = (props) => {
         addToCart,
         cartItems,
         removeFromCart,
-        updateQuantity
+        updateQuantity,
+        clearCart
     };
 
     return (
