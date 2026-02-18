@@ -255,6 +255,25 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
                 </button>
             </div>
 
+            {
+                showPopup && orderDetails && (
+                    <ReceiptPopup
+                        orderDetails={{
+                            ...orderDetails,
+                            razorpayOrderId: orderDetails.paymentDetails?.razorpayOrderId,
+                            razorpayPaymentId: orderDetails.paymentDetails?.razorpayPaymentId
+                        }}
+
+                        onClose={() => {
+                            setShowPopup(false);
+                            setOrderDetails(null);
+                        }}
+                        onPrint={handlePrintReceipt}
+
+                    />
+                )
+            }
+
         </div>
     )
 }
