@@ -1,4 +1,5 @@
 import './ReceiptPopup.css';
+import './Print.css'
 
 const ReceiptPopup = ({ orderDetails, onClose, onPrint }) => {
 
@@ -51,7 +52,7 @@ const ReceiptPopup = ({ orderDetails, onClose, onPrint }) => {
                     <span>₹{orderDetails?.tax?.toFixed(2)}</span>
                 </div>
 
-                <div className="d-flex justify-content-between mb-2">
+                <div className="d-flex justify-content-between mb-4">
                     <span><strong>Grand Total:</strong></span>
                     <span>₹{orderDetails?.grandTotal?.toFixed(2)}</span>
                 </div>
