@@ -8,14 +8,15 @@ import ManageUsers from "./pages/ManageUsers/ManageUsers";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Toaster } from "react-hot-toast";
 import Login from "./pages/Login/Login";
+import OrderHistory from "./pages/OrderHistory/OrderHistory";
 
 function App() {
-const location = useLocation();
+  const location = useLocation();
 
   return (
     <div>
       {location.pathname !== '/login' && <Menubar />}
-      <Toaster/>
+      <Toaster />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
@@ -24,6 +25,8 @@ const location = useLocation();
         <Route path="/items" element={<ManageItems />} />
         <Route path="/users" element={<ManageUsers />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/orders" element={<OrderHistory />} />
+
       </Routes>
     </div>
   );

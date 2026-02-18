@@ -38,13 +38,16 @@ const Menubar = () => {
             <Link className="nav-link" to="/explore">Explore</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/items">manage Items</Link>
+            <Link className="nav-link" to="/items">Manage Items</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/category">manage Categories</Link>
+            <Link className="nav-link" to="/category">Manage Categories</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/users">manage Users</Link>
+            <Link className="nav-link" to="/users">Manage Users</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/orders">Order History</Link>
           </li>
         </ul>
 
