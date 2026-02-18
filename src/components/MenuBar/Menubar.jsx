@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import './Menubar.css';
 import { assets } from '../../assets/assets';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
 const Menubar = () => {
 
 
   const { setAuthData } = useContext(AppContext);
   const navigate = useNavigate();
+
+  const location = useLocation();
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -16,6 +18,9 @@ const Menubar = () => {
     navigate("/login");
   }
 
+const isActive = (path) => {
+  return location.pathname === path;
+}
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-2">
@@ -28,26 +33,26 @@ const Menubar = () => {
       </button>
       <div className="collapse navbar-collapse p-2" id="navbarNav">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          {/* <li className="nav-item">
+            <Link className={`nav-link ${isActive('/') ? 'fw-bold text-info' : ''}`} to="/">Home</Link>
+          </li> */}
           <li className="nav-item">
-            <Link className="nav-link" to="/">Home</Link>
+            <Link className={`nav-link ${isActive('/dashboard') ? 'fw-bold text-info' : ''}`} to="/dashboard">Dashboard</Link>
+          </li>"
+          <li className="nav-item">
+            <Link className={`nav-link ${isActive('/explore') ? 'fw-bold text-info' : ''}`}to="/explore">Explore</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/dashboard">Dashboard</Link>
+            <Link className={`nav-link ${isActive('/items') ? 'fw-bold text-info' : ''}`} to="/items">Manage Items</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/explore">Explore</Link>
+            <Link className={`nav-link ${isActive('/category') ? 'fw-bold text-info' : ''}`} to="/category">Manage Categories</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/items">Manage Items</Link>
+            <Link className={`nav-link ${isActive('/users') ? 'fw-bold text-info' : ''}`} to="/users">Manage Users</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/category">Manage Categories</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/users">Manage Users</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/orders">Order History</Link>
+            <Link className={`nav-link ${isActive('/orders') ? 'fw-bold text-info' : ''}`} to="/orders">Order History</Link>
           </li>
         </ul>
 
@@ -68,7 +73,7 @@ const Menubar = () => {
                 <li>
                   <hr className='dropdown-divider' />
                 </li>
-                <a href="#" className="dropdown-item" onClick={logout}>
+                <a href="#" className="dropdown-item text-danger fw-bold" onClick={logout}>
                   Logout
                 </a>
               </li>
