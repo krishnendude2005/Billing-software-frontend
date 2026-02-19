@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import './CartSummary.css'
-import { AppContext } from '../../context/appContext'
+import { AppContext } from '../../context/AppContext'
 import ReceiptPopup from '../ReceiptPopup/ReceiptPopup';
 import { createOrder, deleteOrder } from '../../service/OrderService';
 import toast from 'react-hot-toast'
