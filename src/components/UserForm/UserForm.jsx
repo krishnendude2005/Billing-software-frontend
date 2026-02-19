@@ -54,6 +54,7 @@ const UserForm = ({ reloadUsers }) => {
                                     placeholder="John Doe"
                                     onChange={onChangeHandler}
                                     value={data.name}
+                                    required
                                 />
                             </div>
 
@@ -66,6 +67,7 @@ const UserForm = ({ reloadUsers }) => {
                                     placeholder="Yourname@example.com"
                                     onChange={onChangeHandler}
                                     value={data.email}
+                                    required
                                 />
                             </div>
 
@@ -79,6 +81,7 @@ const UserForm = ({ reloadUsers }) => {
                                     placeholder="**********"
                                     onChange={onChangeHandler}
                                     value={data.password}
+                                    required
                                 />
                             </div>
                             <button type="submit" className="btn btn-warning w-100" disabled={loading}>

@@ -107,6 +107,7 @@ const ItemForm = ({ reloadItems }) => {
                                     placeholder="Item Name"
                                     value={data.name}
                                     onChange={onChangeHandler}
+                                    required
                                 />
                             </div>
 
@@ -117,6 +118,7 @@ const ItemForm = ({ reloadItems }) => {
                                     className="form-control"
                                     value={data.categoryId}
                                     onChange={onChangeHandler}
+                                    required
                                 >
                                     <option value="">---Select Category---</option>
                                     {categories.map((category) => (
@@ -136,6 +138,7 @@ const ItemForm = ({ reloadItems }) => {
                                     placeholder="₹200.00"
                                     value={data.price}
                                     onChange={onChangeHandler}
+                                    required
                                 />
                             </div>
 

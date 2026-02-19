@@ -8,6 +8,7 @@ const CustomerForm = ({ customerName, setCustomerName, mobileNumber, setMobileNu
                     <label htmlFor="customerName" className='col-4'>Customer Name</label>
                     <input type="text" className='form-control form-control-sm' id='customerName'
                         onChange={(e) => setCustomerName(e.target.value)} value={customerName}
+                        required
                     />
                 </div>
             </div>
@@ -20,6 +21,7 @@ const CustomerForm = ({ customerName, setCustomerName, mobileNumber, setMobileNu
 
                         onChange={(e) => setMobileNumber(e.target.value)}
                         value={mobileNumber}
+                        required
                     />
                 </div>
             </div>
