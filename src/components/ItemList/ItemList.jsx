@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { AppContext } from "../../context/AppContext";
+import { AppContext } from "../../context/AppContextNEW";
 import { deleteItem } from "../../service/ItemService";
 import toast from "react-hot-toast";
 import './ItemList.css'

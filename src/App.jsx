@@ -11,7 +11,7 @@ import Login from "./pages/Login/Login";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import { useContext } from "react";
 import NotFound from "./pages/NotFound/NotFound";
-import { AppContext } from "./context/AppContext";
+import { AppContext } from "./context/AppContextNEW";
 
 function App() {
   const location = useLocation();

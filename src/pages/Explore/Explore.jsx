@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import './Explore.css';
-import { AppContext } from '../../context/AppContext';
+import { AppContext } from '../../context/AppContextNEW';
 import DisplayCategory from '../../components/DisplayCategory/DisplayCategory';
 import DisplayItems from '../../components/DisplayItems/DisplayItems';
 import CustomerForm from '../../components/CustomerForm/CustomerForm';
