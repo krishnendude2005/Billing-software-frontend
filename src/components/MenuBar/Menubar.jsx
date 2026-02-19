@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './Menubar.css';
 import { assets } from '../../assets/assets';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AppContext } from '../../context/AppContextNEW';
+import { AppContext } from '../../context/AppContext';
 const Menubar = () => {
 
 

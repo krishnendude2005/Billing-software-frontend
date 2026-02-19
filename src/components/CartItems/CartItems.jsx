@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import './CartItems.css'
-import { AppContext } from '../../context/AppContextNEW';
+import { AppContext } from '../../context/AppContext';
 
 const CartItems = () => {
 
