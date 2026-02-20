@@ -1,13 +1,13 @@
 import axios from 'axios'
 
 export const latestOrders = async() => {
-    return await axios.get("http://billingsoftwarebackend-production.up.railway.app/api/v1.0/orders/latest", {headers: {'Authorization': `Bearer ${localStorage.getItem("token")}`}});
+    return await axios.get("https://billingsoftwarebackend-production.up.railway.app/api/v1.0/orders/latest", {headers: {'Authorization': `Bearer ${localStorage.getItem("token")}`}});
 }
 
 export const createOrder = async(order) => {
-    return await axios.post("http://billingsoftwarebackend-production.up.railway.app/api/v1.0/orders", order, {headers: {'Authorization': `Bearer ${localStorage.getItem("token")}`}});
+    return await axios.post("https://billingsoftwarebackend-production.up.railway.app/api/v1.0/orders", order, {headers: {'Authorization': `Bearer ${localStorage.getItem("token")}`}});
 }
 
 export const deleteOrder = async(id) => {
-    return await axios.delete(`http://billingsoftwarebackend-production.up.railway.app/api/v1.0/orders/${id}`, {headers: {'Authorization': `Bearer ${localStorage.getItem("token")}`}});
+    return await axios.delete(`https://billingsoftwarebackend-production.up.railway.app/api/v1.0/orders/${id}`, {headers: {'Authorization': `Bearer ${localStorage.getItem("token")}`}});
 }
