@@ -1,5 +1,6 @@
 # React + Vite
 
+First you have to Logout 😅. Then sign in with your credentials. 
 ## ✨ Features
 
 ✅ **User-Friendly Interface** - Intuitive dashboard with clean UI components
