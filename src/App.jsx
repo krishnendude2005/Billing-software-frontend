@@ -7,7 +7,7 @@ import ManageItems from "./pages/ManageItems/ManageItems";
 import ManageUsers from "./pages/ManageUsers/ManageUsers";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Toaster } from "react-hot-toast";
-import Login from "./pages/Login/Login";
+import Login from "@/components/ui/animated-characters-login-page";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import { useContext } from "react";
 import NotFound from "./pages/NotFound/NotFound";

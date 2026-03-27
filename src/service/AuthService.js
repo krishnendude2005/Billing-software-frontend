@@ -1,7 +1,6 @@
 import axios from 'axios';
- const renderUrl = "billingsoftware-latest-46yn.onrender.com"
- const railwayUrl = "billingsoftwarebackend-production.up.railway.app"
- 
+import BASE_URL from './api';
+
 export const login = async(data) => {
-   return await axios.post("https://billing-software-llatestt.onrender.com/api/v1.0/login", data)
+   return await axios.post(`${BASE_URL}/login`, data)
 }

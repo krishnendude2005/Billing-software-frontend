@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Menubar.css';
 import { assets } from '../../assets/assets';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
+
 const Menubar = () => {
-
-
   const { setAuthData, auth } = useContext(AppContext);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-
   const location = useLocation();
 
   const logout = () => {
@@ -22,70 +21,70 @@ const Menubar = () => {
     return location.pathname === path;
   }
 
-  const isAdmin = auth.role === "ROLE_ADMIN";
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  }
+
+  const isAdmin = auth && auth.role === "ROLE_ADMIN";
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-2">
-      <Link className="navbar-brand" to="/"> </Link>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3 main-navbar">
+      <Link className="navbar-brand d-flex align-items-center" to="/">
+        <img src={assets.logo} alt="Logo" className="navbar-logo" />
+      </Link>
 
-      <img src={assets.logo} alt="Logo" height="50" />
-
-      <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button className="navbar-toggler" type="button" onClick={toggleMenu} aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse p-2" id="navbarNav">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          {/* <li className="nav-item">
-            <Link className={`nav-link ${isActive('/') ? 'fw-bold text-info' : ''}`} to="/">Home</Link>
-          </li> */}
+
+      <div className={`navbar-collapse-custom ${isOpen ? 'show-mobile' : ''}`} id="navbarNav">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-list-left">
           <li className="nav-item">
-            <Link className={`nav-link ${isActive('/dashboard') ? 'fw-bold text-info' : ''}`} to="/dashboard">Dashboard</Link>
-          </li>"
+            <Link className={`nav-link-custom ${isActive('/dashboard') ? 'active-link' : ''}`} to="/dashboard" onClick={() => setIsOpen(false)}>Dashboard</Link>
+          </li>
           <li className="nav-item">
-            <Link className={`nav-link ${isActive('/explore') ? 'fw-bold text-info' : ''}`} to="/explore">Explore</Link>
+            <Link className={`nav-link-custom ${isActive('/explore') ? 'active-link' : ''}`} to="/explore" onClick={() => setIsOpen(false)}>Explore</Link>
           </li>
           {
             isAdmin && (
               <>
                 <li className="nav-item">
-                  <Link className={`nav-link ${isActive('/items') ? 'fw-bold text-info' : ''}`} to="/items">Manage Items</Link>
+                  <Link className={`nav-link-custom ${isActive('/items') ? 'active-link' : ''}`} to="/items" onClick={() => setIsOpen(false)}>Manage Items</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className={`nav-link ${isActive('/category') ? 'fw-bold text-info' : ''}`} to="/category">Manage Categories</Link>
+                  <Link className={`nav-link-custom ${isActive('/category') ? 'active-link' : ''}`} to="/category" onClick={() => setIsOpen(false)}>Manage Categories</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className={`nav-link ${isActive('/users') ? 'fw-bold text-info' : ''}`} to="/users">Manage Users</Link>
+                  <Link className={`nav-link-custom ${isActive('/users') ? 'active-link' : ''}`} to="/users" onClick={() => setIsOpen(false)}>Manage Users</Link>
                 </li>
               </>
             )
           }
           <li className="nav-item">
-            <Link className={`nav-link ${isActive('/orders') ? 'fw-bold text-info' : ''}`} to="/orders">Order History</Link>
+            <Link className={`nav-link-custom ${isActive('/orders') ? 'active-link' : ''}`} to="/orders" onClick={() => setIsOpen(false)}>Order History</Link>
           </li>
         </ul>
 
-        {/* Add the dorpdown for user-profile */}
-        <ul className="navbar-nav ms-auto ms-mb-0 me-3 me-lg-4">
+        <ul className="navbar-nav ms-auto align-items-center nav-list-right">
           <li className="nav-item dropdown">
-            <a href="#" className="nav-link dropdown-toggle" id='navbarDropdown' role='button' data-bs-toggle="dropdown" aria-expanded="false">
-              <img src={assets.profile} alt="" height={32} width={32} className='rounded-circle' />
+            <a href="#" className="nav-link dropdown-toggle d-flex align-items-center text-white" id='navbarDropdown' role='button' data-bs-toggle="dropdown" aria-expanded="false">
+              <img src={assets.profile} alt="Profile" height={32} width={32} className='rounded-circle me-1 border border-light' />
             </a>
             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby='navbarDropdown'>
               <li>
-                <a href="#" className="dropdown-item">
-                  Settings
-                </a>
-                <a href="#" className="dropdown-item">
-                  Activity log
-                </a>
-                <li>
-                  <hr className='dropdown-divider' />
-                </li>
-                <a href="#" className="dropdown-item text-danger fw-bold" onClick={logout}>
-                  Logout
-                </a>
+                <a href="#" className="dropdown-item">Settings</a>
               </li>
-
+              <li>
+                <a href="#" className="dropdown-item">Activity log</a>
+              </li>
+              <li>
+                <hr className='dropdown-divider' />
+              </li>
+              <li>
+                <button className="dropdown-item text-danger fw-bold" onClick={logout}>
+                  Logout
+                </button>
+              </li>
             </ul>
           </li>
         </ul>
